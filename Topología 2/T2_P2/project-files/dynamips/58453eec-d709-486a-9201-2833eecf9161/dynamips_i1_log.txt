@@ -1,0 +1,42 @@
+Oct 24 13:37:08.608 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Oct 24 13:37:08.618 HYPERVISOR: Started on IP = localhost, TCP port = 63658.
+Oct 24 13:37:08.754 HYPERVISOR: exec_cmd: hypervisor version 
+Oct 24 13:37:08.764 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\pbara\OneDrive - Facultad de Ingeniería de la Universidad de San Carlos de Guatemala\Archivos U Pablo\U 6to Semestre\Redes 1\RedesPP\Topología 2\T2_P2\project-files\dynamips 
+Oct 24 13:37:08.777 GENERAL: working_dir=C:\Users\pbara\OneDrive - Facultad de Ingeniería de la Universidad de San Carlos de Guatemala\Archivos U Pablo\U 6to Semestre\Redes 1\RedesPP\Topología 2\T2_P2\project-files\dynamips
+Oct 24 13:37:08.779 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\pbara\OneDrive - Facultad de Ingeniería de la Universidad de San Carlos de Guatemala\Archivos U Pablo\U 6to Semestre\Redes 1\RedesPP\Topología 2\T2_P2\project-files\dynamips\e313bad4-4cdb-4095-b5ff-90e64004547e 
+Oct 24 13:37:08.780 GENERAL: working_dir=C:\Users\pbara\OneDrive - Facultad de Ingeniería de la Universidad de San Carlos de Guatemala\Archivos U Pablo\U 6to Semestre\Redes 1\RedesPP\Topología 2\T2_P2\project-files\dynamips\e313bad4-4cdb-4095-b5ff-90e64004547e
+Oct 24 13:37:08.780 HYPERVISOR: exec_cmd: vm create ESW1 2 c3725 
+Oct 24 13:37:08.933 VM: VM ESW1 created.
+Oct 24 13:37:08.936 HYPERVISOR: exec_cmd: vm set_con_tcp_port ESW1 5001 
+Oct 24 13:37:08.937 HYPERVISOR: exec_cmd: c3725 get_mac_addr ESW1 
+Oct 24 13:37:08.937 HYPERVISOR: exec_cmd: vm set_disk0 ESW1 1 
+Oct 24 13:37:08.939 HYPERVISOR: exec_cmd: vm set_exec_area ESW1 64 
+Oct 24 13:37:08.946 HYPERVISOR: exec_cmd: vm set_ios ESW1 C:/Users/pbara/GNS3/images/IOS/c3725-adventerprisek9-mz124-15.image 
+Oct 24 13:37:08.949 HYPERVISOR: exec_cmd: c3725 set_mac_addr ESW1 c202.1940.0000 
+Oct 24 13:37:08.954 HYPERVISOR: exec_cmd: vm set_nvram ESW1 256 
+Oct 24 13:37:08.956 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:37:08.957 HYPERVISOR: exec_cmd: vm slot_add_binding ESW1 1 0 NM-16ESW 
+Oct 24 13:37:21.992 HYPERVISOR: exec_cmd: nio create_udp udp-ff2ebde8-1a0b-46bf-b879-92acf1efdf18 10004 127.0.0.1 10005 
+Oct 24 13:37:22.338 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 4 udp-ff2ebde8-1a0b-46bf-b879-92acf1efdf18 
+Oct 24 13:37:22.340 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:37:24.213 HYPERVISOR: exec_cmd: nio create_udp udp-d0bc0300-e71b-4af1-b9be-f3412559e827 10020 127.0.0.1 10021 
+Oct 24 13:37:24.224 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 0 udp-d0bc0300-e71b-4af1-b9be-f3412559e827 
+Oct 24 13:37:24.226 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:37:25.540 HYPERVISOR: exec_cmd: nio create_udp udp-16c9cced-a41c-4530-a669-3f22bd56c62d 10026 127.0.0.1 10027 
+Oct 24 13:37:25.550 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 1 udp-16c9cced-a41c-4530-a669-3f22bd56c62d 
+Oct 24 13:37:25.553 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:37:26.018 HYPERVISOR: exec_cmd: nio create_udp udp-31a28b09-9d9b-4947-88fe-8bfeb4d57fdd 10032 127.0.0.1 10033 
+Oct 24 13:37:26.027 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 2 udp-31a28b09-9d9b-4947-88fe-8bfeb4d57fdd 
+Oct 24 13:37:26.028 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:37:26.856 HYPERVISOR: exec_cmd: nio create_udp udp-e0d0bf4d-c9d4-45d3-b552-a92b94dc39df 10038 127.0.0.1 10039 
+Oct 24 13:37:26.867 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 3 udp-e0d0bf4d-c9d4-45d3-b552-a92b94dc39df 
+Oct 24 13:37:26.869 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:38:39.465 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:38:39.483 HYPERVISOR: exec_cmd: vm extract_config ESW1 
+Oct 24 13:38:41.088 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Oct 24 13:38:41.091 HYPERVISOR: exec_cmd: vm extract_config ESW1 
+Oct 24 13:38:41.098 HYPERVISOR: exec_cmd: vm delete ESW1 
+Oct 24 13:38:41.098 VM: VM ESW1 destroyed.
+Oct 24 13:38:41.105 HYPERVISOR: exec_cmd: hypervisor stop 
+Oct 24 13:38:41.125 HYPERVISOR: Stopped.
+Oct 24 13:38:41.126 GENERAL: reset done.
