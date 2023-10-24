@@ -150,28 +150,15 @@ Nombre | Carnet |
     int vlan40
     ip address 192.168.47.129 255.255.255.192
     no shutdown
-    exit 
-    interface port-channel 1
-    channel-group 1 mode active
-    interface port-channel 2
-    channel-group 2 mode active
-    interface fa1/0
-    speed 1000
-    duplex full
+    end
+    conf t
+    interface range f1/0 - 1
     channel-group 1 mode on
-    interface fa 1/1
-    speed 1000
-    duplex full
-    channel-group 1 mode on
-    interface GigabitEthernet 1/2
-    speed 1000
-    duplex full
-    channel-group 2 mode on
-    interface GigabitEthernet 1/3
-    speed 1000
-    duplex full
-    channel-group 2 mode on
-    exit
+    end
+    conf t
+   interface range f1/2 - 3
+   channel-group 2 mode on
+   end
     conf t
    spanning-tree vlan 10 root primary
    end
@@ -225,8 +212,15 @@ Nombre | Carnet |
     switchport mode trunk
     switchport trunk allowed vlan 1-2,1002-1005,10,20,30,40
     no shutdown
-    exit
-    exit
+    end
+    conf t
+    interface range f1/4 - 5
+    channel-group 3 mode on
+    end
+    conf t
+   interface range f1/6 - 8
+   channel-group 5 mode on
+   end
     conf t
     vtp domain redes1gp7
     vtp mode client
@@ -273,8 +267,11 @@ Nombre | Carnet |
     switchport mode trunk
     switchport trunk allowed vlan 1-2,1002-1005,10,20,30,40
     no shutdown
-    exit
-    exit
+    end
+    conf t
+    interface range f1/4 - 5
+    channel-group 4 mode on
+    end
     conf t
     vtp domain redes1gp7
     vtp mode client
@@ -320,40 +317,7 @@ Nombre | Carnet |
 ```
 #### R5
  ```sh
-    conf t	
-    int f1/0
-    ip address 10.7.2.1 255.255.255.252
-    no shutdown 
-    exit	
-    int f0/0
-    ip address 10.7.1.1 255.255.255.248
-    no shutdown
-    exit
-    int f3/0
-    no shutdown
-    int f3/0.30	
-    encapsulation dot1q 3
-    ip address 192.168.57.126 255.255.255.128
-    no shutdown
-    int f3/0.40	
-    encapsulation dot1q 4
-    ip address 192.168.57.190 255.255.255.192	
-    no shutdown
-    int f3/0.10	
-    encapsulation dot1q 1
-    ip address 192.168.57.222 255.255.255.224
-    no shutdown
-    int f3/0.20
-    encapsulation dot1q 2	
-    ip address 192.168.57.238 255.255.255.240
-    no shutdown
-    exit
-    router rip
-    version 2
-    network 10.7.1.1
-    network 10.7.2.2
-    end
-    wr
+   
  ```
 
 PC1
