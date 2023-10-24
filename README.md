@@ -9,10 +9,10 @@ Nombre | Carnet |
 ## Tabla de subredes 
 | Nombre VLAN | Numero Vlan | Salto | Network | Mask| Primera Asignable | Ultima Asignable | Broadcast |
 | ----------- | ----------- | ------ | ------- | ------ | --------- | ------- | --------- | 
-| VENT | 1 |  /25(128) | 192.168.47.0 |255.255.255.128/25 | 192.168.47.1 | 192.168.47.126 | 192.168.47.127 |
-| INF | 2 | /26 (64) | 192.168.47.128 |255.255.255.192/26 | 192.168.47.129 | 192.168.47.190 | 192.168.47.191 | 
-| RRHH | 3 | /27(32) | 192.168.47.192 | 255.255.255.224/27 | 192.168.47.193 | 192.168.47.222 | 192.168.47.223 | 
-| CONT | 4 | /28(16) | 192.168.47.224 |  255.255.255.240/28 | 192.168.47.225 | 192.168.47.238 | 1922.168.47.239 | 
+| VENTAS | 1 |  /25(128) | 192.168.47.0 |255.255.255.128/25 | 192.168.47.1 | 192.168.47.126 | 192.168.47.127 |
+| INFORMATICA | 2 | /26 (64) | 192.168.47.128 |255.255.255.192/26 | 192.168.47.129 | 192.168.47.190 | 192.168.47.191 | 
+| RECURSOS HUMANOS | 3 | /27(32) | 192.168.47.192 | 255.255.255.224/27 | 192.168.47.193 | 192.168.47.222 | 192.168.47.223 | 
+| CONTABILIDAD | 4 | /28(16) | 192.168.47.224 |  255.255.255.240/28 | 192.168.47.225 | 192.168.47.238 | 1922.168.47.239 | 
 
 
 ## Topologia 1
@@ -172,6 +172,18 @@ Nombre | Carnet |
     duplex full
     channel-group 2 mode on
     exit
+    conf t
+   spanning-tree vlan 10 root primary
+   end
+   conf t
+   spanning-tree vlan 20 root primary
+   end
+   conf t
+   spanning-tree vlan 30 root primary
+   end
+   conf t
+   spanning-tree vlan 40 root primary
+   end
     exit
  ```
 #### ESW2 
@@ -306,6 +318,44 @@ Nombre | Carnet |
     vtp password redes1gp7
     end
 ```
+#### R5
+ ```sh
+    conf t	
+    int f1/0
+    ip address 10.7.2.1 255.255.255.252
+    no shutdown 
+    exit	
+    int f0/0
+    ip address 10.7.1.1 255.255.255.248
+    no shutdown
+    exit
+    int f3/0
+    no shutdown
+    int f3/0.30	
+    encapsulation dot1q 3
+    ip address 192.168.57.126 255.255.255.128
+    no shutdown
+    int f3/0.40	
+    encapsulation dot1q 4
+    ip address 192.168.57.190 255.255.255.192	
+    no shutdown
+    int f3/0.10	
+    encapsulation dot1q 1
+    ip address 192.168.57.222 255.255.255.224
+    no shutdown
+    int f3/0.20
+    encapsulation dot1q 2	
+    ip address 192.168.57.238 255.255.255.240
+    no shutdown
+    exit
+    router rip
+    version 2
+    network 10.7.1.1
+    network 10.7.2.2
+    end
+    wr
+ ```
+
 PC1
 ```sh
 ip 192.168.47.195/26  192.168.47.193
@@ -397,7 +447,6 @@ ip 192.168.47.136/27 192.168.47.129
     switchport access vlan 20
     no shutdown
  ```
-
 
 
 
