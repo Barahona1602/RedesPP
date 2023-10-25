@@ -18,6 +18,8 @@ Nombre | Carnet |
 ## Topologia 1
 ### Diseño de topología 
 
+![WhatsApp Image 2023-10-24 at 3 48 42 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/8bf896c4-d204-44a6-8acb-5d98a18c20f0)
+
 ### Comandos
 #### R1
   ```sh
@@ -97,6 +99,8 @@ Nombre | Carnet |
 ### Topologia No.2
 ### Diseño de topología 
 
+![WhatsApp Image 2023-10-24 at 3 49 09 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/af1a180a-790e-4e5f-ac75-f69ac0ea1148)
+
 ### Comandos
 #### ESW1 
  ```sh
@@ -150,12 +154,21 @@ Nombre | Carnet |
     int vlan40
     ip address 192.168.47.129 255.255.255.192
     no shutdown
+<<<<<<< HEAD
     exit 
    conf t
    interface range f1/0 - 1
    channel-group 1 mode on
    end
    conf t
+=======
+    end
+    conf t
+    interface range f1/0 - 1
+    channel-group 1 mode on
+    end
+    conf t
+>>>>>>> c8b38d83cc0837762f8dcd28110a0c661d87b59e
    interface range f1/2 - 3
    channel-group 2 mode on
    end
@@ -212,8 +225,15 @@ Nombre | Carnet |
     switchport mode trunk
     switchport trunk allowed vlan 1-2,1002-1005,10,20,30,40
     no shutdown
-    exit
-    exit
+    end
+    conf t
+    interface range f1/4 - 5
+    channel-group 3 mode on
+    end
+    conf t
+   interface range f1/6 - 8
+   channel-group 5 mode on
+   end
     conf t
     vtp domain redes1gp7
     vtp mode client
@@ -260,8 +280,11 @@ Nombre | Carnet |
     switchport mode trunk
     switchport trunk allowed vlan 1-2,1002-1005,10,20,30,40
     no shutdown
-    exit
-    exit
+    end
+    conf t
+    interface range f1/4 - 5
+    channel-group 4 mode on
+    end
     conf t
     vtp domain redes1gp7
     vtp mode client
@@ -307,40 +330,7 @@ Nombre | Carnet |
 ```
 #### R5
  ```sh
-    conf t	
-    int f1/0
-    ip address 10.7.2.1 255.255.255.252
-    no shutdown 
-    exit	
-    int f0/0
-    ip address 10.7.1.1 255.255.255.248
-    no shutdown
-    exit
-    int f3/0
-    no shutdown
-    int f3/0.30	
-    encapsulation dot1q 3
-    ip address 192.168.57.126 255.255.255.128
-    no shutdown
-    int f3/0.40	
-    encapsulation dot1q 4
-    ip address 192.168.57.190 255.255.255.192	
-    no shutdown
-    int f3/0.10	
-    encapsulation dot1q 1
-    ip address 192.168.57.222 255.255.255.224
-    no shutdown
-    int f3/0.20
-    encapsulation dot1q 2	
-    ip address 192.168.57.238 255.255.255.240
-    no shutdown
-    exit
-    router rip
-    version 2
-    network 10.7.1.1
-    network 10.7.2.2
-    end
-    wr
+   
  ```
 
 PC1
@@ -370,6 +360,8 @@ ip 192.168.47.136/27 192.168.47.129
 
 ### Topologia 3
 ### Diseño de topología 
+
+![WhatsApp Image 2023-10-24 at 3 49 02 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/6d4b5bca-850e-456e-b1b2-7edf7c9913ea)
 
 ### Comandos
 #### R6
@@ -434,7 +426,14 @@ ip 192.168.47.136/27 192.168.47.129
     switchport access vlan 20
     no shutdown
  ```
+## Comprobaciones 
+### Ping entre informática
 
+![WhatsApp Image 2023-10-24 at 3 49 51 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/4410d609-2260-4367-8846-73e17adc2b46)
+
+### Ping entre Ventas
+
+![WhatsApp Image 2023-10-24 at 3 50 06 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/9c910740-88ad-465e-868d-143b6b6f4dff)
 
 
 
