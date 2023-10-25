@@ -151,27 +151,14 @@ Nombre | Carnet |
     ip address 192.168.47.129 255.255.255.192
     no shutdown
     exit 
-    interface port-channel 1
-    channel-group 1 mode active
-    interface port-channel 2
-    channel-group 2 mode active
-    interface fa1/0
-    speed 1000
-    duplex full
-    channel-group 1 mode on
-    interface fa 1/1
-    speed 1000
-    duplex full
-    channel-group 1 mode on
-    interface GigabitEthernet 1/2
-    speed 1000
-    duplex full
-    channel-group 2 mode on
-    interface GigabitEthernet 1/3
-    speed 1000
-    duplex full
-    channel-group 2 mode on
-    exit
+   conf t
+   interface range f1/0 - 1
+   channel-group 1 mode on
+   end
+   conf t
+   interface range f1/2 - 3
+   channel-group 2 mode on
+   end
     conf t
    spanning-tree vlan 10 root primary
    end
