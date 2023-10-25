@@ -1,0 +1,67 @@
+R1
+  conf t	
+  int fa0/0	
+  ip address 10.7.2.2 255.255.255.252	
+  no shutdown
+  exit
+  int fa1/0	
+  ip address 10.7.1.1 255.255.255.248	
+  glbp 7 ip 10.7.1.5
+  glbp 7 priority 150 
+  glbp 7 preempt
+  no shutdown
+  router rip
+  version 2
+  network 10.7.1.1
+  network 10.7.2.2
+  end
+
+R2
+    conf t	
+    int fa1/0	
+    ip address 10.7.3.2 255.255.255.252	
+    no shutdown
+    exit
+    int f0/0	
+    ip address 10.7.1.2 255.255.255.248	
+    glbp 7 ip	10.7.1.5
+    glbp 7 priority 100
+    no shutdown
+    router rip
+    version 2
+    network 10.7.1.2
+    network 10.7.3.2
+    end
+R3
+   conf t
+   int fa1/0	
+   ip address 10.7.4.2 255.255.255.252	
+   no shutdown
+   exit
+   int f0/0	
+   ip address 10.7.1.3 255.255.255.248	
+   standby 7 ip 10.7.1.6
+   standby 7 priority 150
+   standby 7 preempt
+   no shutdown
+   exit
+   router ospf 1
+   network 10.7.4.0 0.0.255.255 area 7
+   network 10.7.1.0 0.0.255.255 area 7
+   end
+R4
+   conf t
+   int fa1/0	
+   ip address 10.7.5.2 255.255.255.252	
+   no shutdown
+   exit
+   int f0/0	
+   ip address 10.7.1.4 255.255.255.248
+   standby 7 ip	10.7.1.6
+   standby 7 priority 100
+   no shutdown
+   exit
+   router ospf 1
+   network 10.7.0.0 0.0.255.255 area 7
+   network 10.7.1.0 0.0.255.255 area 7
+   end
