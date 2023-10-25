@@ -18,6 +18,8 @@ Nombre | Carnet |
 ## Topologia 1
 ### Diseño de topología 
 
+![WhatsApp Image 2023-10-24 at 3 48 42 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/8bf896c4-d204-44a6-8acb-5d98a18c20f0)
+
 ### Comandos
 #### R1
   ```sh
@@ -96,6 +98,8 @@ Nombre | Carnet |
 
 ### Topologia No.2
 ### Diseño de topología 
+
+![WhatsApp Image 2023-10-24 at 3 49 09 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/af1a180a-790e-4e5f-ac75-f69ac0ea1148)
 
 ### Comandos
 #### ESW1 
@@ -348,6 +352,8 @@ ip 192.168.47.136/27 192.168.47.129
 ### Topologia 3
 ### Diseño de topología 
 
+![WhatsApp Image 2023-10-24 at 3 49 02 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/6d4b5bca-850e-456e-b1b2-7edf7c9913ea)
+
 ### Comandos
 #### R6
  ```sh
@@ -411,7 +417,14 @@ ip 192.168.47.136/27 192.168.47.129
     switchport access vlan 20
     no shutdown
  ```
+## Comprobaciones 
+### Ping entre informática
 
+![WhatsApp Image 2023-10-24 at 3 49 51 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/4410d609-2260-4367-8846-73e17adc2b46)
+
+### Ping entre Ventas
+
+![WhatsApp Image 2023-10-24 at 3 50 06 PM](https://github.com/Barahona1602/RedesPP/assets/98893615/9c910740-88ad-465e-868d-143b6b6f4dff)
 
 
 
