@@ -375,22 +375,6 @@ exit
 int f3/0
 no shutdown
 exit
-ip dhcp pool VENTAS
- network 192.168.57.0 255.255.255.224
- default-router 192.168.57.1
- exit
-ip dhcp pool INFORMATICA
- network 192.168.57.32 255.255.255.240
- default-router 192.168.57.33
- exit
-ip dhcp pool RHUMANOS
- network 192.168.57.48 255.255.255.128
- default-router 192.168.57.49
- exit
-ip dhcp pool CONTABILIDAD
- network 192.168.57.160 255.255.255.192
- default-router 192.168.57.161
- exit
 int f3/0.30
 encapsulation dot1q 30
 ip address 192.168.57.49 255.255.255.128
