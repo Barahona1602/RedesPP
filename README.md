@@ -9,10 +9,10 @@ Nombre | Carnet |
 ## Tabla de subredes 
 | Nombre VLAN | Numero Vlan | Salto | Network | Mask| Primera Asignable | Ultima Asignable | Broadcast |
 | ----------- | ----------- | ------ | ------- | ------ | --------- | ------- | --------- | 
-| VENTAS | 1 |  /25(128) | 192.168.47.0 |255.255.255.128/25 | 192.168.47.1 | 192.168.47.126 | 192.168.47.127 |
-| INFORMATICA | 2 | /26 (64) | 192.168.47.128 |255.255.255.192/26 | 192.168.47.129 | 192.168.47.190 | 192.168.47.191 | 
-| RECURSOS HUMANOS | 3 | /27(32) | 192.168.47.192 | 255.255.255.224/27 | 192.168.47.193 | 192.168.47.222 | 192.168.47.223 | 
-| CONTABILIDAD | 4 | /28(16) | 192.168.47.224 |  255.255.255.240/28 | 192.168.47.225 | 192.168.47.238 | 1922.168.47.239 | 
+| VENTAS | 10 |  /25(128) | 192.168.47.0 |255.255.255.128/25 | 192.168.47.1 | 192.168.47.126 | 192.168.47.127 |
+| INFORMATICA | 20 | /26 (64) | 192.168.47.128 |255.255.255.192/26 | 192.168.47.129 | 192.168.47.190 | 192.168.47.191 | 
+| RECURSOS HUMANOS | 30 | /27(32) | 192.168.47.192 | 255.255.255.224/27 | 192.168.47.193 | 192.168.47.222 | 192.168.47.223 | 
+| CONTABILIDAD | 40 | /28(16) | 192.168.47.224 |  255.255.255.240/28 | 192.168.47.225 | 192.168.47.238 | 1922.168.47.239 | 
 
 
 ## Topologia 1
@@ -154,21 +154,18 @@ Nombre | Carnet |
     int vlan40
     ip address 192.168.47.129 255.255.255.192
     no shutdown
-<<<<<<< HEAD
     exit 
    conf t
    interface range f1/0 - 1
    channel-group 1 mode on
    end
    conf t
-=======
     end
     conf t
     interface range f1/0 - 1
     channel-group 1 mode on
     end
     conf t
->>>>>>> c8b38d83cc0837762f8dcd28110a0c661d87b59e
    interface range f1/2 - 3
    channel-group 2 mode on
    end
@@ -366,65 +363,99 @@ ip 192.168.47.136/27 192.168.47.129
 ### Comandos
 #### R6
  ```sh
-    conf t	
-    int f1/0
-    ip address 10.7.5.1 255.255.255.252
-    no shutdown 
-    exit	
-    int f0/0
-    ip address 10.7.4.1 255.255.255.252
-    no shutdown
-    exit
-    int f3/0
-    no shutdown
-    int f3/0.30	
-    encapsulation dot1q 3
-    ip address 192.168.57.126 255.255.255.128
-    no shutdown
-    int f3/0.40	
-    encapsulation dot1q 4
-    ip address 192.168.57.190 255.255.255.192	
-    no shutdown
-    int f3/0.10	
-    encapsulation dot1q 1
-    ip address 192.168.57.222 255.255.255.224
-    no shutdown
-    int f3/0.20
-    encapsulation dot1q 2	
-    ip address 192.168.57.238 255.255.255.240
-    no shutdown
-    exit
-    router ospf 1
-    network 192.168.57.0 0.0.0.255 area 7
-    network 10.7.4.0 0.0.255.255 area 7
-    network 10.7.5.0 0.0.255.255 area 7
-    end
-    wr
+ conf t
+int f1/0
+ip address 10.7.5.1 255.255.255.252
+no shutdown
+exit
+int f0/0
+ip address 10.7.4.1 255.255.255.252
+no shutdown
+exit
+int f3/0
+no shutdown
+exit
+ip dhcp pool VENTAS
+ network 192.168.57.0 255.255.255.224
+ default-router 192.168.57.1
+ exit
+ip dhcp pool INFORMATICA
+ network 192.168.57.32 255.255.255.240
+ default-router 192.168.57.33
+ exit
+ip dhcp pool RHUMANOS
+ network 192.168.57.48 255.255.255.128
+ default-router 192.168.57.49
+ exit
+ip dhcp pool CONTABILIDAD
+ network 192.168.57.160 255.255.255.192
+ default-router 192.168.57.161
+ exit
+int f3/0.30
+encapsulation dot1q 30
+ip address 192.168.57.49 255.255.255.128
+no shutdown
+exit
+int f3/0.40
+encapsulation dot1q 40
+ip address 192.168.57.161 255.255.255.192
+no shutdown
+exit
+int f3/0.10
+encapsulation dot1q 10
+ip address 192.168.57.1 255.255.255.224
+no shutdown
+exit
+int f3/0.20
+encapsulation dot1q 20
+ip address 192.168.57.33 255.255.255.240
+no shutdown
+exit
+router ospf 1
+network 192.168.57.0 0.0.0.255 area 7
+network 10.7.4.0 0.0.255.255 area 7
+network 10.7.5.0 0.0.255.255 area 7
+exit
+end
+wr
  ```
 
 #### ESW5
  ```sh
-    conf t
-    int f1/0
-    switchport mode trunk
-    switchport trunk allowed vlan 1-2,1002-1005,10,20,30,40
-    no shutdown
-    int f1/1
-    switchport mode access 
-    switchport access vlan 10
-    no shutdown
-    int f1/2
-    switchport mode access 
-    switchport access vlan 40
-    no shutdown
-    int f1/3
-    switchport mode access 
-    switchport access vlan 30
-    no shutdown
-    int f1/4
-    switchport mode access 
-    switchport access vlan 20
-    no shutdown
+conf t
+vlan 10
+name VENTAS
+vlan 20
+name INFORMATICA
+vlan 30
+name RHUMANOS
+vlan 40
+name CONTABILIDAD
+end
+   conf t
+   int f1/0
+   switchport mode trunk 
+   switchport trunk encapsulation dot1q
+   switchport trunk allowed vlan 1-2,1002-1005,10,20,30,40
+   no shutdown
+   int f1/1
+   switchport mode access 
+   switchport access vlan 10
+   no shutdown
+   int f1/2
+   switchport mode access 
+   switchport access vlan 40
+   no shutdown
+   int f1/3
+   switchport mode access 
+   switchport access vlan 30
+   no shutdown
+   int f1/4
+   switchport mode access 
+   switchport access vlan 20
+   no shutdown
+end
+wr
  ```
 ## Comprobaciones 
 ### Ping entre informática
